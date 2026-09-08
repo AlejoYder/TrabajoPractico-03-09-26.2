@@ -65,6 +65,20 @@ public class Semaforo : MonoBehaviour
             
         }
     }
+    //ve si el semaforo esta en rojo para el automovil
+    public bool EstaEnRojo()
+    {
+        return LuzActual == EstadoLuz.Rojo;
+    }
+    public bool EstaEnVerde()
+    {
+        return LuzActual == EstadoLuz.Verde;
+    }
+    //sirve para ver si la persona puede crusar
+    public bool PuedeCruzar()
+    {
+        return LuzActual == EstadoLuz.Rojo;
+    }
     public void VerEstado()
     {
 
