@@ -17,4 +17,8 @@ public class Persona : MonoBehaviour
             transform.Translate(Vector3.right * Velocidad * Time.deltaTime);
         }
     }
+    public void MandarSolicitud()
+    {
+        semaforo.SolicitarCruce();
+    }
 }

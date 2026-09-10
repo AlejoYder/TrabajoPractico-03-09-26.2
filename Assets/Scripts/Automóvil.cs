@@ -15,10 +15,9 @@ public class Automóvil : MonoBehaviour
         {
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
-    }
-
-    public void Detenerse()
-    {
 
     }
+
+
+
 }
