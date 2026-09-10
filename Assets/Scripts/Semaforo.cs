@@ -86,10 +86,7 @@ public class Semaforo : MonoBehaviour
     {
         TextoTiempo.text = TiempoActual.ToString();
 
-        Debug.Log(
-            "Estado del semaforo: " + LuzActual +
-            " | Tiempo restante: " + TiempoActual
-        );
+        Debug.Log("Estado del semaforo: " + LuzActual +" | Tiempo restante: " + TiempoActual);
     }
 
 
