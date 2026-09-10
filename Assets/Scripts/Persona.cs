@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Persona : MonoBehaviour
 {
     [SerializeField] private float Velocidad = 2;
     [SerializeField] private Semaforo semaforo;
+    [SerializeField] private Button SolicitarPaso;
 
     private void Update()
     {

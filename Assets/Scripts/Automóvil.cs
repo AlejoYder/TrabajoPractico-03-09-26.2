@@ -11,13 +11,10 @@ public class Automóvil : MonoBehaviour
     }
     private void Moverse()
     {
-        if (!semaforo.EstaEnRojo())
+        if (semaforo.EstaEnVerde())
         {
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
 
     }
-
-
-
 }
