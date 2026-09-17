@@ -1,9 +1,9 @@
 using UnityEngine;
+using static Detector;
 
 public class Persona : MonoBehaviour
 {
     [SerializeField] private float Velocidad = 2;
-    [SerializeField] private Semaforo semaforo;
   
     public bool puedeMoverse = true; 
     public void Avanzar() => puedeMoverse = true;
@@ -20,5 +20,25 @@ public class Persona : MonoBehaviour
             transform.Translate(Vector3.right * Velocidad * Time.deltaTime);
         }
     }
-   
+    private void OnTriggerStay(Collider other)
+    {
+        Semaforo s = null;
+        if (other.CompareTag("Detector"))
+        {
+            s = other.GetComponent<Detector>().GetSemaforo;
+
+            if (s.EstaEnRojo())
+                
+                Avanzar();
+            else
+               Detenerse();
+            if (s.EstaEnVerde())
+            {
+               s.SolicitarCambio();
+            }
+
+        }
+
+    }
+
 }

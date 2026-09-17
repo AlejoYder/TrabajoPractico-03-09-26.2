@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Automovil
   - Persona
+  - Detector
   layers:
   - Default
   - TransparentFX
