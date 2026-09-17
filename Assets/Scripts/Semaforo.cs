@@ -49,7 +49,7 @@ public class Semaforo : MonoBehaviour
     private void CambiarEstado(EstadoLuz nuevoEstado)
     {
         LuzActual = nuevoEstado;
-        TiempoActual = 5;
+        TiempoActual = 3;
 
         luzVerde.material = materialApagado;
         luzAmarillo.material = materialApagado;
@@ -80,7 +80,7 @@ public class Semaforo : MonoBehaviour
     {
         TiempoActual--;
 
-        if (TiempoActual < 0 && !SolicitudRecibida)
+        if (TiempoActual < 1 && !SolicitudRecibida)
         {
             if 
                 (LuzActual == EstadoLuz.Verde) CambiarEstado(EstadoLuz.Amarillo);
@@ -150,26 +150,6 @@ public class Semaforo : MonoBehaviour
     public bool PuedeCruzar()
     {
         return LuzActual == EstadoLuz.Rojo;
-    }
-    // DETECTAR AUTOMÓVIL
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Automovil"))
-        {
-            SensorTrafico = true;
-
-            Debug.Log("Automovil detectado por el sensor.");
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Automovil"))
-        {
-            SensorTrafico = false;
-
-            Debug.Log("Automovil salio del sensor.");
-        }
     }
     public void VerEstadoPeaton()
     {
