@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Detector;
 
 public class Automóvil : MonoBehaviour
 {
@@ -19,5 +20,16 @@ public class Automóvil : MonoBehaviour
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
 
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Detector"))
+        {
+
+            if (other.GetComponent<Detector>().GetSemaforo.EstaEnVerde())
+                Avanzar();
+            else
+              Detenerse();
+        }
     }
 }
