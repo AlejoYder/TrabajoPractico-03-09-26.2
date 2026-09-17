@@ -3,15 +3,18 @@ using UnityEngine;
 public class Automóvil : MonoBehaviour
 {
     [SerializeField] private float velocidad = 5;
-    [SerializeField] private Semaforo semaforo;
+   
+    private bool puedeMoverse = true;
 
+    public void Avanzar() => puedeMoverse = true;
+    public void Detenerse () => puedeMoverse = false;
     private void Update()
     {
         Moverse();
     }
-    private void Moverse()
+    public void Moverse()
     {
-        if (semaforo.EstaEnVerde())
+        if (puedeMoverse)
         {
             transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
         }
