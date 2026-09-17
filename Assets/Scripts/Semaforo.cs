@@ -9,25 +9,20 @@ public class Semaforo : MonoBehaviour
     [Header("Datos semaforo")]
     [SerializeField] private EstadoLuz LuzActual;
     [SerializeField] private int TiempoActual = 5;
-    [Header("GameObject")]
-    [SerializeField] public GameObject presenciaAutomovil;
-    [SerializeField] public GameObject presenciaPersona;
+
     [Header("Luces")]
     [SerializeField] private Renderer luzVerde;
     [SerializeField] private Renderer luzAmarillo;
     [SerializeField] private Renderer luzRojo;
+
     [SerializeField] private Material materialApagado;
     [SerializeField] private Material materialRojoEncendido;
     [SerializeField] private Material materialAmarilloEncendido;
     [SerializeField] private Material materialVerdeEncendido;
+
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI TextoTiempo;
-    [SerializeField] private Button BotonAutomovil;
-    [SerializeField] private Button BotonPeaton;
-    [Header("bool")]
-    [SerializeField] private bool SolicitudRecibida;
-    [SerializeField] private bool SensorTrafico;
-    
+
 
     public enum EstadoLuz
     {
@@ -77,10 +72,11 @@ public class Semaforo : MonoBehaviour
     }
 
     public void LogicaCambioLuz()
-    {
-        TiempoActual--;
-
-        if (TiempoActual < 1 && !SolicitudRecibida)
+    { if (TiempoActual > 0)
+        {
+            TiempoActual--;
+        }
+        if (TiempoActual <= 0)
         {
             if 
                 (LuzActual == EstadoLuz.Verde) CambiarEstado(EstadoLuz.Amarillo);
@@ -100,38 +96,6 @@ public class Semaforo : MonoBehaviour
 
         Debug.Log("Estado del semaforo: " + LuzActual +" | Tiempo restante: " + TiempoActual);
     }
-    public void DetectarSeñal()
-    {
-        SolicitudRecibida = true;
-        Debug.Log("Señal peatonal detectada.");
-
-        if (LuzActual == EstadoLuz.Verde)
-        {
-            CambiarEstado(EstadoLuz.Amarillo);
-            SolicitudRecibida = false;
-        }
-        else if (LuzActual == EstadoLuz.Amarillo)
-        {
-            Debug.Log("Solicitud recibida. El semaforo ya esta cambiando.");
-        }
-        else if (LuzActual == EstadoLuz.Rojo)
-        {
-            Debug.Log("El semaforo ya esta Rojo. La persona puede cruzar.");
-            SolicitudRecibida = false;
-        }
-    }
-    public void SolicitarCruce()
-    {
-
-        if (SensorTrafico)
-        {
-            Debug.Log("Hay un automovil. No se puede solicitar el cruce.");
-            return;
-        }
-
-        DetectarSeñal();
-    }
-
     // Comprueba si el semáforo está en rojo.
     // Lo utiliza Automóvil.
     public bool EstaEnRojo()
@@ -163,4 +127,17 @@ public class Semaforo : MonoBehaviour
         else
             Debug.Log("El auto debe detenerse.");
     }
+    // Esta función la utiliza Detector
+    // cuando una persona llega al semáforo.
+    public void SolicitarCambio()
+    {
+        if (LuzActual == EstadoLuz.Verde)
+        {
+            CambiarEstado(EstadoLuz.Amarillo);
+
+            Debug.Log("Una persona solicito el cruce.");
+        }
+    }
+   
+
 }

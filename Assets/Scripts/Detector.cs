@@ -28,6 +28,10 @@ public class Detector : MonoBehaviour
                 persona.Avanzar();
             else 
                 persona.Detenerse();
+            if (semaforo.EstaEnVerde())
+            {
+                semaforo.SolicitarCambio();
+            }
         }
     }
 
