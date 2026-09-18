@@ -72,7 +72,13 @@ public class Semaforo : MonoBehaviour
     }
 
     public void LogicaCambioLuz()
-    { if (TiempoActual > 0)
+    { 
+        if(!RedElectrica.instance.On)
+        {
+            Debug.Log("Sin luz");
+            return;
+        }
+        if (TiempoActual > 0)
         {
             TiempoActual--;
         }
